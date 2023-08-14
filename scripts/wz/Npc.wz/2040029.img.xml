@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<imgdir name="2040029.img">
+    <imgdir name="info">
+        <imgdir name="speak">
+            <string name="0" value="n0"/>
+            <string name="1" value="n1"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stand">
+        <canvas name="0" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="1" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <uol name="0" value="0"/>
+        <canvas name="3" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="4" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="5" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <uol name="4" value="4"/>
+        <uol name="3" value="3"/>
+    </imgdir>
+    <imgdir name="blink">
+        <canvas name="0" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="1" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="2" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="3" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="4" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="5" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="6" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="7" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="0" value="0"/>
+        <uol name="1" value="1"/>
+        <uol name="2" value="2"/>
+        <uol name="3" value="3"/>
+        <uol name="4" value="4"/>
+        <uol name="5" value="5"/>
+        <uol name="6" value="6"/>
+        <uol name="7" value="7"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+    </imgdir>
+    <imgdir name="say">
+        <canvas name="0" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="1" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <uol name="0" value="0"/>
+        <canvas name="3" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="4" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <canvas name="5" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+            <int name="delay" value="150"/>
+        </canvas>
+        <uol name="4" value="4"/>
+        <uol name="3" value="3"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="0" value="0"/>
+        <uol name="1" value="1"/>
+        <uol name="2" value="2"/>
+        <uol name="3" value="3"/>
+        <uol name="4" value="4"/>
+        <uol name="5" value="5"/>
+        <uol name="6" value="6"/>
+        <uol name="7" value="7"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <imgdir name="speak">
+            <string name="0" value="n0"/>
+            <string name="1" value="n1"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="hand">
+        <canvas name="0" width="82" height="83">
+            <vector name="origin" x="41" y="83"/>
+        </canvas>
+        <canvas name="1" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="2" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="3" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="4" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="5" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="6" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <canvas name="7" width="80" height="83">
+            <vector name="origin" x="39" y="83"/>
+        </canvas>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="0" value="0"/>
+        <uol name="1" value="1"/>
+        <uol name="2" value="2"/>
+        <uol name="3" value="3"/>
+        <uol name="4" value="4"/>
+        <uol name="5" value="5"/>
+        <uol name="6" value="6"/>
+        <uol name="7" value="7"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/1" value="../stand/1"/>
+        <uol name="../stand/0" value="../stand/0"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/5" value="../stand/5"/>
+        <uol name="../stand/4" value="../stand/4"/>
+        <uol name="../stand/3" value="../stand/3"/>
+        <imgdir name="speak">
+            <string name="0" value="n0"/>
+            <string name="1" value="n1"/>
+        </imgdir>
+    </imgdir>
+</imgdir>
