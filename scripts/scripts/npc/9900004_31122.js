@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
  * 
  * @枫之梦

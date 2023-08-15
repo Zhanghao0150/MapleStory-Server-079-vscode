@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 ﻿//load("nashorn:mozilla_compat.js");
 var 礼包物品 = "#v1302000#";
 var x1 = "1302000,+1";// 物品ID,数量

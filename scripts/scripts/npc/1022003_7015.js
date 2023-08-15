@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
  * 
  * @type豆豆装备兑换

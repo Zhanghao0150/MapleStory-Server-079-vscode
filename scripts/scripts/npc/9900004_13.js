@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
  *
  *  此脚本由冒险岛制作完成

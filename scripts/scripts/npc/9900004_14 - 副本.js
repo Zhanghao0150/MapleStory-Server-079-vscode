@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
  *
  *  此脚本由乐章网络制作完成

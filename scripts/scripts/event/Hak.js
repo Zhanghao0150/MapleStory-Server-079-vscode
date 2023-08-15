@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.tools);
 
 var returnTo = new Array(200000141, 250000100);

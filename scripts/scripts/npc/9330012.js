@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /**
  枫叶装备制作活动 by:Kodan 
  修改 by:梓条

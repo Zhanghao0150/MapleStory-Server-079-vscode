@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /* 
  * 脚本类型: cm
  * 脚本用途: 点卷中介

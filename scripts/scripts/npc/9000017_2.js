@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 ﻿
 importPackage(net.sf.odinms.server.maps); 
 

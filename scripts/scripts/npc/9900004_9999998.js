@@ -11,11 +11,11 @@ function action(mode, type, selection) {
     }
     if (status == 0) {
         if (cm.getMap().getAllMonstersThreadsafe().size() <= 0) {
-            cm.sendOk("当前地图没有怪物");
+            cm.sendOk("褰撳墠鍦板浘娌℃湁鎬墿锟紺");
             cm.dispose();
             return;
         }
-        var selStr = "请选择你要查看怪物的爆率\r\n\r\n#b";
+        var selStr = "璇烽�夋嫨浣犺鏌ョ湅鎬墿鐨勭垎鐜嘰r\n\r\n#b";
         var iz = cm.getMap().getAllUniqueMonsters().iterator();
         while (iz.hasNext()) {
             var zz = iz.next();

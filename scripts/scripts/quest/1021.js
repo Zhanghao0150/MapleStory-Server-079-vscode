@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
  * MinaMS服务端
  * 罗杰的苹果任务

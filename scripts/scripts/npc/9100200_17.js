@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var 粉点号 = "#fUI/Initials.img/Button/Button7/mouseOver/0#";
 var status = 0;

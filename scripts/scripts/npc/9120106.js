@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 //Gachaphon
 
 importPackage(net.sf.odinms.client);

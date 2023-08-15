@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.tools);
 function enter(pi) {
     pi.playPortalSE();

@@ -36,6 +36,8 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'server.Start'
+    // mainClass = 'gui.RoyMS'
+// }
 }
 
 tasks.named('test') {
@@ -51,6 +53,7 @@ task buildJar(type: Jar) {
     from sourceSets.main.output
     manifest {
         attributes 'Main-Class': 'server.Start',
+        // attributes 'Main-Class': 'gui.RoyMS',
                    'Class-Path': configurations.runtimeClasspath.files.collect { "lib/" + it.name }.join(' ')
     }
     

@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /**
  * @触发条件：开拍卖功能
  * @每日签到：领取物品 npc

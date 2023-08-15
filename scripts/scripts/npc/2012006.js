@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /*
 -- MrCoffee JavaScript --
         NPC脚本 

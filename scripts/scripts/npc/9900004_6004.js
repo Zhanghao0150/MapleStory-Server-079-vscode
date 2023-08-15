@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.client);
 var random = java.lang.Math.floor(Math.random() * 7 + 1);
 var randoma = java.lang.Math.floor(Math.random() * 8 + 1);

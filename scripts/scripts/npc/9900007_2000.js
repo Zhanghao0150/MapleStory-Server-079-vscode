@@ -1,13 +1,13 @@
 ﻿//////////////////////////////
-//�߱�*自由冒险岛*最具创意////
+//�߱�*自由冒险岛*最具创意////
 //1346464664/992916233//////
 ///////////////////////////
 var ca = java.util.Calendar.getInstance();
 var year = ca.get(java.util.Calendar.YEAR); //获得年份
 var month = ca.get(java.util.Calendar.MONTH) + 1; //获得月份
-var day = ca.get(java.util.Calendar.DATE);//获取日
+var day = ca.get(java.util.Calendar.DATE); //获取日
 var hour = ca.get(java.util.Calendar.HOUR_OF_DAY); //获得小时
-var minute = ca.get(java.util.Calendar.MINUTE);//获得分钟
+var minute = ca.get(java.util.Calendar.MINUTE); //获得分钟
 var second = ca.get(java.util.Calendar.SECOND); //获得秒
 var weekday = ca.get(java.util.Calendar.DAY_OF_WEEK);
 var Z = "#fUI/GuildMark.img/Mark/Letter/00005025/1#";
@@ -36,61 +36,57 @@ function action(mode, type, selection) {
     } else {
         status--;
     }
-	var MC = cm.getServerName();
-	    if ( cm.getMapId() == 10000) {
-            cm.sendOk(" 自 由 冒 险 岛 境 外 无 法 使 用 此 功 能 。");
-            cm.dispose();
-        }
+    var MC = cm.getServerName();
+    if (cm.getMapId() == 10000) {
+        cm.sendOk(" 自 由 冒 险 岛 境 外 无 法 使 用 此 功 能 。");
+        cm.dispose();
+    } else if (status == 0) {
 
 
-  
-    else if (status == 0) {
-		
-		
-   var  
-	    selStr = "#e#r"+MC+"#k活动区；\r\n";
-		selStr += "#e#L0#"+箭头+"返回界面#l\r\n";
-		
-		selStr += "#L1##b"+箭头+"节奏大师#l\r\n";
-		
-		selStr += "#L2##b"+箭头+"欢乐抢楼#l\r\n";
-		
-		selStr += "#L3##b"+箭头+"智力考试#l\r\n";
-		
-		selStr += "#L4##b"+箭头+"擂台争霸#l\r\n";
+        var
+            selStr = "#e#r" + MC + "#k活动区；\r\n";
+        selStr += "#e#L0#" + 箭头 + "返回界面#l\r\n";
 
-		cm.sendSimple(selStr);
+        selStr += "#L1##b" + 箭头 + "节奏大师#l\r\n";
+
+        selStr += "#L2##b" + 箭头 + "欢乐抢楼#l\r\n";
+
+        selStr += "#L3##b" + 箭头 + "智力考试#l\r\n";
+
+        selStr += "#L4##b" + 箭头 + "擂台争霸#l\r\n";
+
+        cm.sendSimple(selStr);
     } else if (status == 1) {
         switch (selection) {
-        case 0:
-            cm.dispose();
-            cm.openNpc(9900004,0);	
-            break;
-		case 1:
-		if ( cm.getHour() == 20){ 
-            cm.dispose();
-            cm.openNpc(9900007,101);	
-			} else {
-		  cm.sendOk("节奏大师开启时间为每天;#r20:00-20:59");
-		  cm.dispose();
-		  }
-            break;
-		 case 2:
-            cm.dispose();
-            cm.openNpc(9900007,102);	
-            break;
-        case 3:
-            cm.dispose();
-            cm.openNpc(9900007,103);	
-            break;
-        case 4:
-            cm.dispose();
-            cm.openNpc(9900007,104);	
-            break;			
-	 
-			 
-			 
-			 
-		}
+            case 0:
+                cm.dispose();
+                cm.openNpc(9900004, 0);
+                break;
+            case 1:
+                if (cm.getHour() == 20) {
+                    cm.dispose();
+                    cm.openNpc(9900007, 101);
+                } else {
+                    cm.sendOk("节奏大师开启时间为每天;#r20:00-20:59");
+                    cm.dispose();
+                }
+                break;
+            case 2:
+                cm.dispose();
+                cm.openNpc(9900007, 102);
+                break;
+            case 3:
+                cm.dispose();
+                cm.openNpc(9900007, 103);
+                break;
+            case 4:
+                cm.dispose();
+                cm.openNpc(9900007, 104);
+                break;
+
+
+
+
+        }
     }
 }

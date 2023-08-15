@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.cherry.client);
 cal = java.util.Calendar.getInstance();
 weekday = cal.get(java.util.Calendar.DAY_OF_WEEK);

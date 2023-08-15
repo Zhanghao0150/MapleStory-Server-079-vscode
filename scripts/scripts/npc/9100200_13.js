@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var 粉大于号 = "#fUI/Initials.img/Button/Button3/mouseOver/0#";
 var status = 0;

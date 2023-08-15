@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /* ===========================================================
 			Resonance
 	NPC Name: 		Piglet

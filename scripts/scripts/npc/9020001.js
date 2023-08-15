@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.tools);//加入导包
 importPackage(java.awt);//加入导包
 

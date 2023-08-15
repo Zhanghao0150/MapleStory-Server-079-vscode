@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /* global cm, Packages, MapleItemInformationProvider, World, MaplePacketCreator */
 
 importPackage(Packages.tools);

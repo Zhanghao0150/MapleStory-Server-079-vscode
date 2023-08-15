@@ -44,6 +44,7 @@ public abstract class AbstractScriptManager {
                 }
                 fr = new FileInputStream(scriptFile);
                 final BufferedReader bf = new BufferedReader(new InputStreamReader(fr, EncodingDetect.getJavaEncode(scriptFile)));
+                fr = new FileInputStream(scriptFile);
                 if (engine == null) {
                     System.out.println("engine对象为空");
                     return null;

@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 ﻿importPackage(java.lang);
 importPackage(Packages.tools);
 importPackage(Packages.client);

@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 
 importPackage(net.sf.cherry.client);
 var ca = java.util.Calendar.getInstance();

@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var 粉问号 = "#fUI/Initials.img/Button/Button0/mouseOver/0#";  //disabled/0灰色
 var status = 0;

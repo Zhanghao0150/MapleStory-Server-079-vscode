@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /* ==================
  脚本类型:  NPC	    
  脚本作者：故事丶     

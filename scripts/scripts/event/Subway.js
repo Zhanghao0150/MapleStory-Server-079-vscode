@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.tools);
 
 var closeTime = 120000; //The time to close the gate

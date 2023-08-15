@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 /** Author: nejevoli
  NPC Name: 		NimaKin
  Map(s): 		Victoria Road : Ellinia (180000000)

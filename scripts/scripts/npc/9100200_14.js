@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var 粉感叹号 = "#fUI/Initials.img/Button/Button4/mouseOver/0#";
 var status = 0;

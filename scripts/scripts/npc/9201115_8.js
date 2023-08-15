@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(Packages.database);
 var ca = java.util.Calendar.getInstance();
 var year = ca.get(java.util.Calendar.YEAR); //获得年份

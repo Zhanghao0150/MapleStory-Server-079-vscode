@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var menu = new Array("里恩","明珠港","明珠港","里恩");
 var cost = new Array(80,80,80,80);

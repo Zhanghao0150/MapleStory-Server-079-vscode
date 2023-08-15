@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var 枫叶至尊10 = "#fEffect/SkillName1.img/1001003/枫叶至尊10#";
 

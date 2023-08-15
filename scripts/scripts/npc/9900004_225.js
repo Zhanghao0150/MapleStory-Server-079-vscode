@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 
 importPackage(net.sf.cherry.client);
 var status = 0;

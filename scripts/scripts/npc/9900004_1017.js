@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 //odinms_MS
 importPackage(net.sf.odinms.tools);
 importPackage(net.sf.odinms.client);

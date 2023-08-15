@@ -1,3 +1,5 @@
+load('nashorn:mozilla_compat.js');
+
 importPackage(net.sf.odinms.client);
 var status = 0;
 var 正方箭头 = "#fUI/Basic/BtHide3/mouseOver/0#";
