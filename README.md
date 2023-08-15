@@ -1,6 +1,9 @@
 # 环境
 mysql 5.5
 jdk 1.8
+# sql导入
+1，创建数据库 maplestory_079
+2，执行导入sql： ms_20210813_234816.sql
 
 # jec无限制加密策略文件
 jce_policy-8.zip 解压缩移动至%JAVA_HOME%\jre\lib\security
