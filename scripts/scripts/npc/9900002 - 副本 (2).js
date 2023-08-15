@@ -1,6 +1,6 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 
 var status = 0;
 var jobName;

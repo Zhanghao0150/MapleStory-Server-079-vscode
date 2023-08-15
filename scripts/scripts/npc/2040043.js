@@ -7,8 +7,8 @@ load('nashorn:mozilla_compat.js');
  =====================
  */
 //load("nashorn:mozilla_compat.js");
-importPackage(net.sf.cherry.tools);
-importPackage(net.sf.cherry.server.life);
+importPackage(Packages.tools);
+importPackage(Packages.server.life);
 importPackage(java.awt);
 
 var status;

@@ -1,7 +1,7 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.cherry.tools);
-importPackage(net.sf.cherry.client);
+importPackage(Packages.tools);
+importPackage(Packages.client);
 
 var status = 0;
 
@@ -193,7 +193,7 @@ var status = 0;
     cm.sendOk("请带来#v4001126##z4001126#*500");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -292,7 +292,7 @@ cm.gainItem(4001129,-7);
     cm.sendOk("请带来#v4002001##z4002001#*30");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -316,7 +316,7 @@ cm.gainItem(4001129,-7);
     cm.sendOk("请带来#v1122031##z1122031#*1");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -343,7 +343,7 @@ cm.gainItem(4001129,-7);
     cm.sendOk("请带来#v1122032##z1122032#*1");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -389,7 +389,7 @@ cm.gainItem(4001129,-7);
          cm.dispose();
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -414,7 +414,7 @@ cm.gainItem(4001129,-7);
     cm.sendOk("请带来#v4001126##z4001126#*200");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{
@@ -430,7 +430,7 @@ cm.gainItem(4001129,-7);
     cm.sendOk("请带来#v4001126##z4001126#*200");
          cm.dispose();
   } else if (cm.getPlayer().getInventory
-(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
    cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
    cm.dispose();
   } else{

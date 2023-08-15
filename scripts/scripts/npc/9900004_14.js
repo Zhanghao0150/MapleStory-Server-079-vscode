@@ -8,7 +8,7 @@ load('nashorn:mozilla_compat.js');
  */
 
 
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 
 var aaa = "#fUI/UIWindow.img/Quest/icon9/0#";
 var zzz = "#fUI/UIWindow.img/Quest/icon8/0#";

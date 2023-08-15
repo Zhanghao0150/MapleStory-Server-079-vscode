@@ -1,6 +1,6 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 
 var ttt ="#fUI/UIWindow.img/Quest/icon9/0#";
 var xxx ="#fUI/UIWindow.img/Quest/icon8/0#";

@@ -6,7 +6,7 @@ load('nashorn:mozilla_compat.js');
  * @npcName：冒险岛运营员
  * @npcID：   9900004
  **/
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 var status = 0;
 var 黑水晶 = 4021008;
 var 确定 = "#fUI/Login.img/BtOk/normal/0#";

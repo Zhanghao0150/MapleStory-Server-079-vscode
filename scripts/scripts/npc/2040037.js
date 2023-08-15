@@ -7,7 +7,7 @@ load('nashorn:mozilla_compat.js');
  =====================
  */
 //load("nashorn:mozilla_compat.js");
-importPackage(net.sf.cherry.tools);
+importPackage(Packages.tools);
 var status;
 var exp = 24000;
 

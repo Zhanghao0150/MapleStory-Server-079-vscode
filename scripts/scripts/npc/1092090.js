@@ -117,7 +117,7 @@ cm.dispose();
 }else if ((itemchance >= 170) && (itemchance <= 200)) { 
 var zz =4001126;
 cm.gainNX(6);
-cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, net.sf.cherry.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[无与伦比]" + " : " + cm.getName().getName() +" 疯狂点击获得 6 个点卷.大家鼓掌.",true).getBytes());
+cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, Packages.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[无与伦比]" + " : " + cm.getName().getName() +" 疯狂点击获得 6 个点卷.大家鼓掌.",true).getBytes());
 cm.dispose();
 }else if ((itemchance >= 210) && (itemchance <= 230)) { 
 var zz =4001126;
@@ -138,7 +138,7 @@ cm.dispose();
 }else if ((itemchance >= 70) && (itemchance <= 90)) { 
 var zz =4001126;
 cm.gainNX(12);
-//cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, net.sf.cherry.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[无与伦比]" + " : " + cm.getName().getName() +" 疯狂点击获得 #r12#k 个点卷大家鼓掌.",true).getBytes());
+//cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, Packages.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[无与伦比]" + " : " + cm.getName().getName() +" 疯狂点击获得 #r12#k 个点卷大家鼓掌.",true).getBytes());
 cm.serverNotice("[20点无与伦比]:[" + cm.getName() + "]疯狂点击获得 12 个点卷.");
 cm.worldMessage(6,"玩家："+cm.getName()+" 在20点无与伦比抽取了12点券！");
 cm.dispose();

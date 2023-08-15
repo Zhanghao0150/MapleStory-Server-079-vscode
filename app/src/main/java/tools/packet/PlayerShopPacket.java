@@ -29,7 +29,7 @@ public class PlayerShopPacket
         PacketHelper.addAnnounceBox(mplew, c);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -44,7 +44,7 @@ public class PlayerShopPacket
         mplew.write(0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -58,7 +58,7 @@ public class PlayerShopPacket
         mplew.write(7);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -73,7 +73,7 @@ public class PlayerShopPacket
         PacketHelper.addAnnounceBox(mplew, c);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -89,7 +89,7 @@ public class PlayerShopPacket
         mplew.write(4);
         mplew.writeShort(merch.getVisitorSlot(chr));
         mplew.writeInt(merch.getItemId());
-        mplew.writeMapleAsciiString("闆囦剑鍟嗕汉");
+        mplew.writeMapleAsciiString("雇佣商人");
         for (final Pair<Byte, MapleCharacter> storechr : merch.getVisitors()) {
             mplew.write(storechr.left);
             PacketHelper.addCharLook(mplew, storechr.right, false);
@@ -122,7 +122,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -174,7 +174,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -191,7 +191,7 @@ public class PlayerShopPacket
         mplew.writeMapleAsciiString(message);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -207,7 +207,7 @@ public class PlayerShopPacket
         mplew.write(error);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -226,7 +226,7 @@ public class PlayerShopPacket
         PacketHelper.addInteraction(mplew, hm);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -240,7 +240,7 @@ public class PlayerShopPacket
         mplew.writeInt(id);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -264,7 +264,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -281,7 +281,7 @@ public class PlayerShopPacket
         mplew.writeMapleAsciiString(chr.getName());
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -300,7 +300,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -315,7 +315,7 @@ public class PlayerShopPacket
         mplew.write(message);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -330,7 +330,7 @@ public class PlayerShopPacket
         PacketHelper.addInteraction(mplew, shop);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -344,7 +344,7 @@ public class PlayerShopPacket
         mplew.write(op);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -368,7 +368,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -392,7 +392,7 @@ public class PlayerShopPacket
         mplew.writeZeroBytes(3);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -426,7 +426,7 @@ public class PlayerShopPacket
         mplew.writeShort(minigame.getPieceType());
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -440,7 +440,7 @@ public class PlayerShopPacket
         mplew.write(ready ? 57 : 58);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -454,7 +454,7 @@ public class PlayerShopPacket
         mplew.write(ready ? 55 : 56);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -469,7 +469,7 @@ public class PlayerShopPacket
         mplew.write((loser != 1) ? 1 : 0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -484,7 +484,7 @@ public class PlayerShopPacket
         mplew.write(slot);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -499,7 +499,7 @@ public class PlayerShopPacket
         mplew.write((slot != 1) ? 1 : 0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -513,7 +513,7 @@ public class PlayerShopPacket
         mplew.write(48);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -527,7 +527,7 @@ public class PlayerShopPacket
         mplew.write(53);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -541,7 +541,7 @@ public class PlayerShopPacket
         mplew.write(49);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -555,7 +555,7 @@ public class PlayerShopPacket
         mplew.write(48);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -570,7 +570,7 @@ public class PlayerShopPacket
         mplew.write(2);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -587,7 +587,7 @@ public class PlayerShopPacket
         mplew.write(move3);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -605,7 +605,7 @@ public class PlayerShopPacket
         addGameInfo(mplew, c, game);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -629,7 +629,7 @@ public class PlayerShopPacket
         mplew.write(number);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -649,7 +649,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -669,7 +669,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -700,7 +700,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -719,7 +719,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -739,7 +739,7 @@ public class PlayerShopPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -753,7 +753,7 @@ public class PlayerShopPacket
         mplew.write(type);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -768,7 +768,7 @@ public class PlayerShopPacket
         mplew.write(0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }

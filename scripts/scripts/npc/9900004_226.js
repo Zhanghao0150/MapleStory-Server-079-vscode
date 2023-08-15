@@ -1,7 +1,7 @@
 load('nashorn:mozilla_compat.js');
 
 
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 var ca = java.util.Calendar.getInstance();
 var ca = java.util.Calendar.getInstance();
 var year = ca.get(java.util.Calendar.YEAR); //获得年份

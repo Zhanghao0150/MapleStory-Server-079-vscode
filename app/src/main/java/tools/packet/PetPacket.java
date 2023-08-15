@@ -38,7 +38,7 @@ public class PetPacket
         PacketHelper.addPetItemInfo(mplew, item, pet, active);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -53,7 +53,7 @@ public class PetPacket
         mplew.writeShort(slot);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -83,7 +83,7 @@ public class PetPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -113,7 +113,7 @@ public class PetPacket
         mplew.writeShort(0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -130,7 +130,7 @@ public class PetPacket
         PacketHelper.serializeMovementList(mplew, moves);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -148,7 +148,7 @@ public class PetPacket
         mplew.write(0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -171,7 +171,7 @@ public class PetPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -187,7 +187,7 @@ public class PetPacket
         mplew.write(index);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -204,7 +204,7 @@ public class PetPacket
         mplew.write(index);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -227,7 +227,7 @@ public class PetPacket
         mplew.writeZeroBytes(25);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -254,7 +254,7 @@ public class PetPacket
         mplew.write(0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }

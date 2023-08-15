@@ -19,7 +19,7 @@ public class UIPacket
         mplew.write(sp);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -34,7 +34,7 @@ public class UIPacket
         mplew.writeInt(itemid);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -48,7 +48,7 @@ public class UIPacket
         mplew.writeMapleAsciiString(msg);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -63,7 +63,7 @@ public class UIPacket
         mplew.writeInt(itemid);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -100,7 +100,7 @@ public class UIPacket
         mplew.writeInt(1);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -123,7 +123,7 @@ public class UIPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -138,7 +138,7 @@ public class UIPacket
         }
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -152,7 +152,7 @@ public class UIPacket
         mplew.write(summon ? 1 : 0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -168,7 +168,7 @@ public class UIPacket
         mplew.writeInt(7000);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -186,7 +186,7 @@ public class UIPacket
         mplew.writeInt(10000);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -200,7 +200,7 @@ public class UIPacket
         mplew.write(enable ? 1 : 0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -214,7 +214,7 @@ public class UIPacket
         mplew.write(enable ? 1 : 0);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -229,7 +229,7 @@ public class UIPacket
         mplew.writeInt(id);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }
@@ -243,7 +243,7 @@ public class UIPacket
         mplew.writeInt(chrid);
         if (ServerConstants.PACKET_ERROR_OFF) {
             final ServerConstants ERROR = new ServerConstants();
-            ERROR.setPACKET_ERROR(" 鏆傛湭瀹氫箟 锛歕r\n" + mplew.getPacket() + "\r\n\r\n");
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n");
         }
         return mplew.getPacket();
     }

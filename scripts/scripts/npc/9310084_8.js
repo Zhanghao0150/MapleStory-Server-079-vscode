@@ -6,7 +6,7 @@ load('nashorn:mozilla_compat.js');
  * @npcName：冒险岛运营员
  * @npcID：   9900004
  **/
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 var status = 0;
 var 黑水晶 = 4021008;
 var 蓝色箭头 = "#fUI/UIWindow/Quest/icon2/7#";
@@ -50,7 +50,7 @@ function action(mode, type, selection) {
             if (selection == 1) { //更多功能
 			if(cm.haveItem(4002000, 100)){
                         cm.gainItem(4002000,-100);
-			var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();
+			var ii = Packages.server.MapleItemInformationProvider.getInstance();
 			var type = ii.getInventoryType(1032058);	
 			var toDrop = ii.randomizeStats(ii.getEquipById(1032058)).copy();	
 			toDrop.setLuk(5);
@@ -62,8 +62,8 @@ function action(mode, type, selection) {
 			toDrop.setWdef(35);
 			toDrop.setMdef(35);
 			cm.getPlayer().getInventory(type).addItem(toDrop);
-			cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop));
-                     cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, net.sf.cherry.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[" + cm.getPlayer().getName() + "]" + " : " + " 用100个[绿蜗牛邮票]兑换了一个[工作人员C钛质收信机]！",true).getBytes()); 		
+			cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop));
+                     cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, Packages.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[" + cm.getPlayer().getName() + "]" + " : " + " 用100个[绿蜗牛邮票]兑换了一个[工作人员C钛质收信机]！",true).getBytes()); 		
                    cm.sendOk("兑换成功！");
                    cm.dispose();
 			}else{
@@ -108,7 +108,7 @@ function action(mode, type, selection) {
                     cm.gainMeso(-100000);
                     cm.gainItem(4001038,-1);
                      cm.sendOk("学习成功!");
-                     cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, net.sf.cherry.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[" + cm.getPlayer().getName() + "]" + " : " + " 学习了锻造技能！",true).getBytes()); 
+                     cm.getC().getChannelServer().getWorldInterface().broadcastMessage(null, Packages.tools.MaplePacketCreator.serverNotice(12,cm.getC().getChannel(),"[" + cm.getPlayer().getName() + "]" + " : " + " 学习了锻造技能！",true).getBytes()); 
                     cm.dispose();
                 }else{
                     cm.sendOk("学习锻造技能需要消耗一个#v4001038#.和10万冒险币。");

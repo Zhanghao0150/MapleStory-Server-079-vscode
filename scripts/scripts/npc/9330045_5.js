@@ -8,7 +8,7 @@ load('nashorn:mozilla_compat.js');
  */
  
  
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 var status = -1;
 var beauty = 0;
 var tosend = 0;

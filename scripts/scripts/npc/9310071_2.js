@@ -1,7 +1,7 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.cherry.tools);
-importPackage(net.sf.cherry.client);
+importPackage(Packages.tools);
+importPackage(Packages.client);
 
 var status = 0;
 var ttt ="#fUI/UIWindow.img/Quest/icon9/0#";
@@ -60,17 +60,17 @@ var sss ="#fUI/UIWindow.img/QuestIcon/3/0#";
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1302125); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1302125)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -88,17 +88,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1332094); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1332094)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -112,17 +112,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1382075); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1382075)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -135,17 +135,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1432058); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1432058)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -160,17 +160,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1452078); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1452078)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -184,17 +184,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1462070); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1462070)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -208,17 +208,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1472094); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1472094)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -232,17 +232,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1482042); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1482042)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")
@@ -255,17 +255,17 @@ cm.getChar().saveToDB(true);
 		} else if (!cm.haveItem(5220007,1)) {
  			cm.sendOk("#v5220007##z5220007#您没有该物品 需要在商城购买后在来吧#k");
       			cm.dispose();
-		} else if (cm.getPlayer().getInventory(net.sf.cherry.client.MapleInventoryType.getByType(1)).isFull(3)){
+		} else if (cm.getPlayer().getInventory(Packages.client.MapleInventoryType.getByType(1)).isFull(3)){
 			cm.sendOk("#b请保证装备栏位至少有3个空格,否则无法兑换.");
 			cm.dispose();
 		} else{
-         var ii = net.sf.cherry.server.MapleItemInformationProvider.getInstance();		                
+         var ii = Packages.server.MapleItemInformationProvider.getInstance();		                
             var type = ii.getInventoryType(1492043); //获得装备的类形/////////////////////////////////////////////////////////////////////
             var toDrop = ii.randomizeStats(ii.getEquipById(1492043)).copy(); // 生成一个Equip类
             var temptime = new java.sql.Timestamp(java.lang.System.currentTimeMillis() + 1 * 4 * 60 * 60 * 1000*1); //时间
 toDrop.setExpiration(temptime); 
 cm.getPlayer().getInventory(type).addItem(toDrop);//将这个装备放入包中
-cm.getC().getSession().write(net.sf.cherry.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
+cm.getC().getSession().write(Packages.tools.MaplePacketCreator.addInventorySlot(type, toDrop)); //刷新背包	
 cm.getChar().saveToDB(true);
 			cm.gainItem(5220007,-1);
 			cm.sendOk("兑换成功!")

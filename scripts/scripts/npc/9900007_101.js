@@ -1,6 +1,6 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.cherry.client);
+importPackage(Packages.client);
 cal = java.util.Calendar.getInstance();
 weekday = cal.get(java.util.Calendar.DAY_OF_WEEK);
 var Q = "#fEffect/SkillName1.img/1001003/Q#";
