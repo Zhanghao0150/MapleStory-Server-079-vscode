@@ -36,11 +36,13 @@ import server.maps.MapleMapFactory;
 import server.quest.MapleQuest;
 import tools.FileoutputUtil;
 import tools.StringUtil;
+import webui.WebServer;
 
 public class Start
 {
     public static boolean Check;
     private static RoyMS CashGui;
+    private static WebServer CashWebui;
     public static Start instance;
     private static int maxUsers;
     private static ServerSocket srvSocket;
@@ -127,7 +129,11 @@ public class Start
         System.out.println("加载完成, 耗时: " + seconds + "秒" + ms + "毫秒\r\n");
 //        CashGui();
         Boolean loadGui = Boolean.valueOf(ServerProperties.getProperty("RoyMS.loadGui","false"));
-        if(loadGui){
+        Boolean loadWebui = Boolean.valueOf(ServerProperties.getProperty("RoyMS.loadWebui","false"));
+        if(loadWebui){
+            System.out.println("加载管理后台");
+            CashWebui();
+        } else if(loadGui) {
             System.out.println("加载GUI工具");
             CashGui();
         }
@@ -372,6 +378,14 @@ public class Start
             Start.CashGui.dispose();
         }
         (Start.CashGui = new RoyMS()).setVisible(true);
+    }
+
+    public static void CashWebui() {
+        if (Start.CashWebui != null) {
+            Start.CashWebui.dismiss();
+        }
+        Start.CashWebui = new WebServer();
+        Start.CashWebui.run();
     }
 
     //在线统计
