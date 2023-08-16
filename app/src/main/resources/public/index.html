@@ -51,114 +51,116 @@
             </el-tabs>
         </el-card>
     </div>
-</body>
-<!-- import JavaScript -->
-<script src="//unpkg.zhimg.com/element-ui/lib/index.js"></script>
-<!-- import axios-->
-<script src="//unpkg.zhimg.com/axios/dist/axios.min.js"></script>
-<script src="./static/request.js"></script>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: function() {
-            return {
-                isShowLoginCard: true,
-                username: '',
-                password: '',
-                closeServerTime: null,
-                activeName: 'playerManger'
-            }
-        },
-        methods: {
-            async login() {
-                const data = await request({
-                    method: 'get',
-                    url: '/login',
-                    params: {
-                        username: this.username,
-                        password: this.password
-                    }
-                });
-                sessionStorage.setItem('token', data.data);
-                this.isShowLoginCard = false;
-            },
-            async check() {
-                return request({
-                    method: 'get',
-                    url: '/protected/check',
-                });
-            },
-            async getMapleCharacterCount() {
-                const data = await request({
-                    method: 'get',
-                    url: '/protected/getMapleCharacterCount',
-                });
-                const count = data.data.count;
-                this.$message.info("当前服务器在线人数总计:" + count + "个");
-            },
-            /** 关闭服务器 */
-            async closeServer() {
-                if (!this.closeServerTime || this.closeServerTime < 0) {
-                    this.$message.error("请先输入关服时间，单位分，大于0");
-                    return
+
+    <!-- import JavaScript -->
+    <script src="//unpkg.zhimg.com/element-ui/lib/index.js"></script>
+    <!-- import axios-->
+    <script src="//unpkg.zhimg.com/axios/dist/axios.min.js"></script>
+    <script src="./static/request.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    isShowLoginCard: true,
+                    username: '',
+                    password: '',
+                    closeServerTime: null,
+                    activeName: 'playerManger'
                 }
-                const data = await request({
-                    method: 'get',
-                    url: '/protected/closeServer',
-                    params: {
-                        time: this.closeServerTime
-                    }
-                });
-                this.$message({
-                    message: data.msg,
-                    type: 'success'
-                });
             },
-            /** 发送全服公告 */
-            async sendAllServerNotice() {
-                this.$prompt('请输入公告内容', '提示', {
-                    confirmButtonText: '发送',
-                    cancelButtonText: '取消',
-                    inputPattern: /(.*?)/,
-                    inputErrorMessage: '不允许换行符'
-                }).then(async({
-                    value
-                }) => {
+            methods: {
+                async login() {
                     const data = await request({
                         method: 'get',
-                        url: '/protected/sendAllServerNotice',
+                        url: '/login',
                         params: {
-                            content: value
+                            username: this.username,
+                            password: this.password
                         }
                     });
-                }).catch((msg) => {
+                    sessionStorage.setItem('token', data.data);
+                    this.isShowLoginCard = false;
+                },
+                async check() {
+                    return request({
+                        method: 'get',
+                        url: '/protected/check',
+                    });
+                },
+                async getMapleCharacterCount() {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/getMapleCharacterCount',
+                    });
+                    const count = data.data.count;
+                    this.$message.info("当前服务器在线人数总计:" + count + "个");
+                },
+                /** 关闭服务器 */
+                async closeServer() {
+                    if (!this.closeServerTime || this.closeServerTime < 0) {
+                        this.$message.error("请先输入关服时间，单位分，大于0");
+                        return
+                    }
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/closeServer',
+                        params: {
+                            time: this.closeServerTime
+                        }
+                    });
+                    this.$message({
+                        message: data.msg,
+                        type: 'success'
+                    });
+                },
+                /** 发送全服公告 */
+                async sendAllServerNotice() {
+                    this.$prompt('请输入公告内容', '提示', {
+                        confirmButtonText: '发送',
+                        cancelButtonText: '取消',
+                        inputPattern: /(.*?)/,
+                        inputErrorMessage: '不允许换行符'
+                    }).then(async({
+                        value
+                    }) => {
+                        const data = await request({
+                            method: 'get',
+                            url: '/protected/sendAllServerNotice',
+                            params: {
+                                content: value
+                            }
+                        });
+                    }).catch((msg) => {
 
-                });
+                    });
+                },
+                /** 断开全服玩家连接 */
+                async disconnectAllServerPlayer() {
+                    await request({
+                        method: 'get',
+                        url: '/protected/disconnectAllServerPlayer',
+                    });
+                    this.$message({
+                        message: '断开全服玩家连接成功',
+                        type: 'success'
+                    });
+                }
             },
-            /** 断开全服玩家连接 */
-            async disconnectAllServerPlayer() {
-                await request({
-                    method: 'get',
-                    url: '/protected/disconnectAllServerPlayer',
-                });
-                this.$message({
-                    message: '断开全服玩家连接成功',
-                    type: 'success'
-                });
+            created() {
+                this.check().then(() => {
+                    // 通过token校验
+                    this.isShowLoginCard = false;
+                }).catch((msg) => {
+                    // 没通过
+                    console.log('msg', msg)
+                    this.isShowLoginCard = true;
+                })
+                document.getElementById("app").setAttribute("style", "")
             }
-        },
-        created() {
-            this.check().then(() => {
-                // 通过token校验
-                this.isShowLoginCard = false;
-            }).catch((msg) => {
-                // 没通过
-                console.log('msg', msg)
-                this.isShowLoginCard = true;
-            })
-            document.getElementById("app").setAttribute("style", "")
-        }
-    })
-</script>
+        })
+    </script>
+
+</body>
 
 </html>
