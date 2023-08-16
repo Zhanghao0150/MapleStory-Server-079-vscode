@@ -1,6 +1,6 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.client);
 var menu = new Array("武陵", "天空之城", "百草堂", "武陵");
 var cost = new Array(6000, 6000, 1500, 1500);
 var Hak;

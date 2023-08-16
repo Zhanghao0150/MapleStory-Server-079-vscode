@@ -7,7 +7,7 @@ load('nashorn:mozilla_compat.js');
  =====================
  */
 //load("nashorn:mozilla_compat.js");
-importPackage(net.sf.odinms.tools);
+importPackage(Packages.tools);
 var status;
 var exp = 25000;
 
@@ -56,13 +56,14 @@ function action(mode, type, selection) {
         }
     }
 }
+
 function clear(stage, eim, cm) {
-	eim.setProperty("stage" + stage.toString() + "status","clear");
+    eim.setProperty("stage" + stage.toString() + "status", "clear");
     cm.showEffect(true, "quest/party/clear");
     cm.playSound(true, "Party1/Clear");
     cm.environmentChange(true, "gate");
-	var map = eim.getMapInstance(cm.getChar().getMapId());
-	var mf = eim.getMapFactory();
+    var map = eim.getMapInstance(cm.getChar().getMapId());
+    var mf = eim.getMapFactory();
     map = mf.getMap(922010300);
     var nextStage = eim.getMapInstance(922010400);
     var portal = nextStage.getPortal("next00");

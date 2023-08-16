@@ -1,6 +1,6 @@
 load('nashorn:mozilla_compat.js');
 
-importPackage(net.sf.odinms.client);
+importPackage(Packages.client);
 var status = 0;
 var 正方箭头 = "#fUI/Basic/BtHide3/mouseOver/0#";
 var 感叹号 = "#fUI/UIWindow/Quest/icon0#";
