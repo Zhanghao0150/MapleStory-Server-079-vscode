@@ -24,6 +24,15 @@ gradlew build
 cd dist
 java -jar ./myapp.jar
 ```
+
+# 在线gm控制台
+
+地址： http://127.0.0.1:4567
+
+账号： admin
+
+密码： admin
+
 # 客户端下载
 链接: https://pan.baidu.com/s/1gDt0qN-AoU9fGvhp1TLuJA?pwd=rcan 
 
