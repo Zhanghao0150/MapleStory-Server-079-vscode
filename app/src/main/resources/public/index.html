@@ -21,6 +21,14 @@
         .flex {
             display: flex;
         }
+        
+        .wrap {
+            flex-wrap: wrap;
+        }
+        
+        .center {
+            align-items: center;
+        }
     </style>
     <!-- import Vue before Element -->
     <script src="//unpkg.zhimg.com/vue@2/dist/vue.js"></script>
@@ -43,11 +51,32 @@
                 <el-button type="primary" @click="disconnectAllServerPlayer">断开全服玩家连接</el-button>
             </div>
             <el-tabs v-model="activeName" style="height: 500px;">
-                <el-tab-pane label="玩家管理" name="playerManger">玩家管理</el-tab-pane>
-                <el-tab-pane label="保存数据" name="saveData">保存数据</el-tab-pane>
-                <el-tab-pane label="重载系列" name="configManger">重载系列</el-tab-pane>
-                <el-tab-pane label="卡号处理" name="stuckAccountHandler">卡号处理</el-tab-pane>
-                <el-tab-pane label="账号服务" name="accountService">账号服务</el-tab-pane>
+                <el-tab-pane label="玩家管理" name="playerManger">
+                    <div class="flex center">
+                        <span>全服奖励：</span>
+                        <el-input v-model="rewardNumber" type="number" style="width:90px;margin-right: 12px;"></el-input>
+                        <el-select v-model="rewardType" placeholder="请选择奖励" style="width:90px;margin-right: 12px;">
+                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <el-button type="primary" @click="sendAllServerReward">发放全服奖励</el-button>
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="重载系列" name="configManger" class="flex wrap">
+                    <el-button type="primary" @click="reload('Dungeon')">重载副本</el-button>
+                    <el-button type="primary" @click="reload('Task')">重载任务</el-button>
+                    <el-button type="primary" @click="reload('ParkHead')">重载包头</el-button>
+                    <el-button type="primary" @click="reload('SqlConnect')">清除sql连接</el-button>
+                    <el-button type="primary" @click="reload('EquipRate')">重载爆率</el-button>
+                    <el-button type="primary" @click="reload('Shop')">重载商店</el-button>
+                    <el-button type="primary" @click="reload('CashShop')">重载商城</el-button>
+                    <el-button type="primary" @click="reload('Reaction')">重载反应堆</el-button>
+                    <el-button type="primary" @click="reload('Transmitn')">重载传送门</el-button>
+                </el-tab-pane>
+                <el-tab-pane label="保存数据" name="saveData">
+                    <el-button type="primary" @click="save('data')">保存数据</el-button>
+                    <el-button type="primary" @click="save('shopNpc')">保存雇佣</el-button>
+                </el-tab-pane>
             </el-tabs>
         </el-card>
     </div>
@@ -66,7 +95,22 @@
                     username: '',
                     password: '',
                     closeServerTime: null,
-                    activeName: 'playerManger'
+                    activeName: 'playerManger',
+                    rewardNumber: 0,
+                    options: [{
+                        value: 1,
+                        label: '点卷'
+                    }, {
+                        value: 2,
+                        label: '抵用卷'
+                    }, {
+                        value: 3,
+                        label: '金币'
+                    }, {
+                        value: 4,
+                        label: '经验'
+                    }],
+                    rewardType: 1
                 }
             },
             methods: {
@@ -143,6 +187,46 @@
                     });
                     this.$message({
                         message: '断开全服玩家连接成功',
+                        type: 'success'
+                    });
+                },
+                /** 重载 */
+                async reload(type) {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/reload',
+                        params: {
+                            type
+                        }
+                    });
+                    this.$message({
+                        message: data.msg,
+                        type: 'success'
+                    });
+                },
+                /**发放全服奖励 */
+                async sendAllServerReward() {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/sendAllServerReward',
+                        params: {
+                            type: this.rewardType,
+                            number: this.rewardNumber
+                        }
+                    });
+                    this.$message({
+                        message: data.msg,
+                        type: 'success'
+                    });
+                },
+                /** 保存数据*/
+                async save(name) {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/save/' + name
+                    });
+                    this.$message({
+                        message: data.msg,
                         type: 'success'
                     });
                 }

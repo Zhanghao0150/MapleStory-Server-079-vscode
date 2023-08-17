@@ -1,6 +1,9 @@
 package webui;
 import static spark.Spark.*;
 
+import database.DatabaseConnection;
+import handling.RecvPacketOpcode;
+import handling.SendPacketOpcode;
 import handling.world.World;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,8 +16,14 @@ import java.util.concurrent.ScheduledFuture;
 import com.google.gson.Gson;
 import handling.channel.ChannelServer;
 import client.MapleCharacter;
+import scripting.PortalScriptManager;
+import scripting.ReactorScriptManager;
+import server.CashItemFactory;
+import server.MapleShopFactory;
 import server.ShutdownServer;
 import server.Timer;
+import server.life.MapleMonsterInformationProvider;
+import server.quest.MapleQuest;
 import spark.HaltException;
 import tools.MaplePacketCreator;
 
@@ -28,6 +37,8 @@ public class WebServer {
     private Thread closeServerThread;
     private ScheduledFuture<?> timeSchedule;
     private int CODE_OTHER_ERROR = -1;
+    private boolean reloadFlag = false;
+    private boolean saveFlag = false;
 
     public static void main(final String[] args) {
 
@@ -156,6 +167,168 @@ public class WebServer {
                 }
                 return generateResponse(CODE_SUCCESS, "success", null);
             } catch(Exception e) {
+                e.printStackTrace();
+                return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
+            }
+        });
+        // 重载系列
+        get("/protected/reload", (request, response) -> {
+            try {
+                if (reloadFlag) {
+                    return generateResponse(CODE_OTHER_ERROR, "正在重载其他内容，请稍后再试", null);
+                }
+                String type = request.queryParams("type");
+                type = URLDecoder.decode(type, "UTF-8");
+                String outStr = "";
+                reloadFlag = true;
+                switch(type){
+                    case "Task": // 任务
+                        MapleQuest.clearQuests();
+                        outStr = "[重载系统] 任务重载成功。";
+                        break;
+                    case "Dungeon": // 副本
+                        for (final ChannelServer instance1 : ChannelServer.getAllInstances()) {
+                            if (instance1 != null) {
+                                instance1.reloadEvents();
+                            }
+                        }
+                        outStr = "[重载系统] 副本重载成功。";
+                        break;
+                    case "ParkHead":
+                        SendPacketOpcode.reloadValues();
+                        RecvPacketOpcode.reloadValues();
+                        outStr = "[重载系统] 包头重载成功。。";
+                        break;
+                    case "SqlConnect":
+                        DatabaseConnection.closeTimeout();
+                        outStr = "[重载系统] 清除sql连接成功。。";
+                        break;
+                    case "EquipRate":
+                        MapleMonsterInformationProvider.getInstance().clearDrops();
+                        outStr = "[重载系统] 爆率重载成功。";
+                        break;
+                    case "Shop":
+                        MapleShopFactory.getInstance().clear();
+                        outStr = "[重载系统] 商店重载成功。";
+                        break;
+                    case "CashShop":
+                        CashItemFactory.getInstance().clearCashShop();
+                        outStr= "[重载系统] 商城重载成功。";
+                        break;
+                    case "Reaction":
+                        ReactorScriptManager.getInstance().clearDrops();
+                        outStr = "[重载系统] 反应堆重载成功。";
+                        break;
+                    case "Transmitn":
+                        PortalScriptManager.getInstance().clearScripts();
+                        outStr = "[重载系统] 传送门重载成功。";
+                        break;
+                }
+                reloadFlag = false;
+                if (outStr.equals("")){
+                    return generateResponse(CODE_OTHER_ERROR, "未知的type", null);
+                }
+                System.out.println(outStr);
+                return generateResponse(CODE_SUCCESS, outStr, null);
+            } catch(Exception e) {
+                e.printStackTrace();
+                return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
+            }
+        });
+        // 保存系列
+        get("/protected/save/:name", (request, response) -> {
+            try {
+                if(saveFlag){
+                    return generateResponse(CODE_OTHER_ERROR, "正在重保存他内容，请稍后再试", null);
+                }
+                saveFlag = true;
+                String name = request.params(":name");
+                String outStr = "";
+                int p = 0;
+                if (name.equals("data")) {
+                    for (final ChannelServer cserv : ChannelServer.getAllInstances()) {
+                        for (final MapleCharacter chr : cserv.getPlayerStorage().getAllCharacters()) {
+                            ++p;
+                            chr.saveToDB(true, true);
+                        }
+                    }
+                    outStr = "[保存数据系统] 保存" + p + "个成功。";
+                } else if (name.equals("shopNpc")) {
+                    for (final ChannelServer cserv : ChannelServer.getAllInstances()) {
+                        ++p;
+                        cserv.closeAllMerchant();
+                    }
+                    outStr = "[保存雇佣商人系统] 雇佣商人保存" + p + "个频道成功。";
+                }
+                saveFlag = false;
+                System.out.println(outStr);
+                return generateResponse(CODE_SUCCESS, outStr, null);
+            } catch(Exception e) {
+                e.printStackTrace();
+                return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
+            }
+        });
+        // 发放全服奖励
+        get("/protected/sendAllServerReward", (request, response) -> {
+            try{
+                int number = Integer.parseInt(request.queryParams("number"));
+                int type = Integer.parseInt(request.queryParams("type"));
+                if (number <= 0 || type <= 0) {
+                    return generateResponse(CODE_OTHER_ERROR, "输入了错误的数量或者类型", null);
+                }
+                String outStr = "";
+                int ret = 0;
+                if (type == 1 || type == 2) {
+                    for (final ChannelServer cserv1 : ChannelServer.getAllInstances()) {
+                        for (final MapleCharacter mch : cserv1.getPlayerStorage().getAllCharacters()) {
+                            mch.modifyCSPoints(type, number);
+                            String cash = null;
+                            if (type == 1) {
+                                cash = "点卷";
+                            }
+                            else if (type == 2) {
+                                cash = "抵用卷";
+                            }
+                            mch.startMapEffect("管理员发放" + number + cash + "给在线的所有玩家！快感谢管理员吧！", 5121009);
+                            ++ret;
+                        }
+                    }
+                }
+                else if (type == 3) {
+                    for (final ChannelServer cserv1 : ChannelServer.getAllInstances()) {
+                        for (final MapleCharacter mch : cserv1.getPlayerStorage().getAllCharacters()) {
+                            mch.gainMeso(number, true);
+                            mch.startMapEffect("管理员发放" + number + "冒险币给在线的所有玩家！快感谢管理员吧！", 5121009);
+                            ++ret;
+                        }
+                    }
+                }
+                else if (type == 4) {
+                    for (final ChannelServer cserv1 : ChannelServer.getAllInstances()) {
+                        for (final MapleCharacter mch : cserv1.getPlayerStorage().getAllCharacters()) {
+                            mch.gainExp(number, true, false, true);
+                            mch.startMapEffect("管理员发放" + number + "经验给在线的所有玩家！快感谢管理员吧！", 5121009);
+                            ++ret;
+                        }
+                    }
+                }
+                String typeA = "";
+                if (type == 1) {
+                    typeA = "点卷";
+                }
+                else if (type == 2) {
+                    typeA = "抵用卷";
+                }
+                else if (type == 3) {
+                    typeA = "金币";
+                }
+                else if (type == 4) {
+                    typeA = "经验";
+                }
+                outStr = "一个发放[" + number + "]." + typeA + "!一共发放给了" + ret + "人！";
+                System.out.println(outStr);
+                return generateResponse(CODE_SUCCESS, outStr, null);
+            } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
