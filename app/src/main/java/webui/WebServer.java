@@ -11,6 +11,9 @@ import io.jsonwebtoken.security.Keys;
 
 import java.net.URLDecoder;
 import java.security.Key;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.concurrent.ScheduledFuture;
 
 import com.google.gson.Gson;
@@ -328,6 +331,30 @@ public class WebServer {
                 outStr = "一个发放[" + number + "]." + typeA + "!一共发放给了" + ret + "人！";
                 System.out.println(outStr);
                 return generateResponse(CODE_SUCCESS, outStr, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
+            }
+        });
+        // 获取在线玩家列表
+        // 发放全服奖励
+        get("/protected/getOnlinePlayerList", (request, response) -> {
+            try{
+                ArrayList<PlayerInfo> list = new ArrayList<>();
+                for (final ChannelServer chl : ChannelServer.getAllInstances()) {
+                    Collection<MapleCharacter> tempList = chl.getPlayerStorage().getAllCharacters();
+                    Iterator<MapleCharacter> it = tempList.iterator();
+                    while (it.hasNext()) {
+                        MapleCharacter mapleCharacter =  it.next();
+                        PlayerInfo playerInfo = new PlayerInfo();
+                        playerInfo.name = mapleCharacter.getName();
+                        playerInfo.accountId= mapleCharacter.getAccountID();
+                        playerInfo.level=  mapleCharacter.getLevel();
+                        playerInfo.gmLevel= mapleCharacter.getGMLevel();
+                        list.add(playerInfo);
+                    }
+                }
+                return generateResponse(CODE_SUCCESS, "success", list);
             } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());

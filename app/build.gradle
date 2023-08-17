@@ -39,8 +39,8 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    // mainClass = 'server.Start'
-    mainClass = 'webui.WebServer'
+    mainClass = 'server.Start'
+    // mainClass = 'webui.WebServer'
     // mainClass = 'gui.RoyMS'
 // }
 }
@@ -71,5 +71,11 @@ task buildJar(type: Jar) {
         into file('../dist/lib')
     }
 }
+task setupRun() {
+    System.setProperty("homePath", "$projectDir/config")
+    System.setProperty("scriptsPath", "$projectDir/scripts")
+    System.setProperty("wzPath", "$projectDir/scripts/wz")
+}
 
+run.dependsOn('setupRun')
 assemble.dependsOn(buildJar)

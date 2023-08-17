@@ -49,6 +49,7 @@
                 <el-button type="primary" @click="closeServer">关闭服务器</el-button>
                 <el-button type="primary" @click="sendAllServerNotice">发送全服公告</el-button>
                 <el-button type="primary" @click="disconnectAllServerPlayer">断开全服玩家连接</el-button>
+                <el-button type="primary" @click="getOnlinePlayerList">测试获取在线玩家数据</el-button>
             </div>
             <el-tabs v-model="activeName" style="height: 500px;">
                 <el-tab-pane label="玩家管理" name="playerManger">
@@ -229,6 +230,13 @@
                         message: data.msg,
                         type: 'success'
                     });
+                },
+                async getOnlinePlayerList() {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/getOnlinePlayerList'
+                    });
+                    console.log("data", data)
                 }
             },
             created() {
