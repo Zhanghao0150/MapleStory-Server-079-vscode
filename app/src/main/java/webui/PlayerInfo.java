@@ -5,4 +5,6 @@ public class PlayerInfo {
     public short level;
     public int gmLevel;
     public int accountId;
+    public int vipLevel;
+    public long vipexpired;
 }

@@ -1,6 +1,11 @@
 package webui;
+
 import static spark.Spark.*;
 
+import client.LoginCrypto;
+import client.inventory.Equip;
+import client.inventory.MapleInventoryType;
+import constants.GameConstants;
 import database.DatabaseConnection;
 import handling.RecvPacketOpcode;
 import handling.SendPacketOpcode;
@@ -11,17 +16,22 @@ import io.jsonwebtoken.security.Keys;
 
 import java.net.URLDecoder;
 import java.security.Key;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.ScheduledFuture;
 
 import com.google.gson.Gson;
+
 import handling.channel.ChannelServer;
 import client.MapleCharacter;
 import scripting.PortalScriptManager;
 import scripting.ReactorScriptManager;
 import server.CashItemFactory;
+import server.MapleInventoryManipulator;
+import server.MapleItemInformationProvider;
 import server.MapleShopFactory;
 import server.ShutdownServer;
 import server.Timer;
@@ -30,10 +40,14 @@ import server.quest.MapleQuest;
 import spark.HaltException;
 import tools.MaplePacketCreator;
 
-public class WebServer { 
-    /** 账号或者密码错误 */
+public class WebServer {
+    /**
+     * 账号或者密码错误
+     */
     static final int CODE_PWD_ERROR = 10002;
-    /** token 无效 */
+    /**
+     * token 无效
+     */
     static final int CODE_INVALID_TOKEN = 10001;
     static final int CODE_SUCCESS = 0;
     private int minutesLeft;
@@ -55,13 +69,13 @@ public class WebServer {
         // 预设的用户名和密码
         String username = "admin";
         String password = "admin";
- 
+
         // 生成一个随机的签名密钥，用于JWT
         Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
         // 设定静态资源文件夹的位置（例如：public）
         staticFileLocation("/public");
-        
+
         // 针对根路径的请求，返回 index.html 静态文件
         get("/", (req, res) -> {
             res.redirect("/index.html");
@@ -80,7 +94,7 @@ public class WebServer {
                         .setSubject(username)
                         .signWith(key)
                         .compact();
-                return generateResponse(CODE_SUCCESS,"sucess", jwt);
+                return generateResponse(CODE_SUCCESS, "sucess", jwt);
             } else {
                 return generateResponse(CODE_PWD_ERROR, "账号或者密码错误", null);
             }
@@ -106,7 +120,7 @@ public class WebServer {
         // 令牌校验通过的保护接口
         get("/protected/check", (request, response) -> generateResponse(CODE_SUCCESS, "success", null));
         // 查询总在线人数接口
-        get("/protected/getMapleCharacterCount", (request, response) ->{
+        get("/protected/getMapleCharacterCount", (request, response) -> {
             int p = 0;
             for (final ChannelServer cserv : ChannelServer.getAllInstances()) {
                 for (final MapleCharacter chr : cserv.getPlayerStorage().getAllCharacters()) {
@@ -120,20 +134,20 @@ public class WebServer {
             return generateResponse(CODE_SUCCESS, "success", result);
         });
         // 断开全服玩家
-        get("/protected/disconnectAllServerPlayer", (request, response) ->{
+        get("/protected/disconnectAllServerPlayer", (request, response) -> {
             for (final ChannelServer cserv : ChannelServer.getAllInstances()) {
                 cserv.getPlayerStorage().disconnectAll(true);
             }
             return generateResponse(CODE_SUCCESS, "success", null);
         });
-        
+
         // 关闭服务器
         get("/protected/closeServer", (request, response) -> {
-            try{
+            try {
                 this.minutesLeft = Integer.parseInt(request.queryParams("time"));
                 if (this.timeSchedule == null && (this.closeServerThread == null || !this.closeServerThread.isAlive())) {
                     this.closeServerThread = new Thread(ShutdownServer.getInstance());
-                    this.timeSchedule  = Timer.EventTimer.getInstance().register(new Runnable() {
+                    this.timeSchedule = Timer.EventTimer.getInstance().register(new Runnable() {
                         @Override
                         public void run() {
                             if (WebServer.this.minutesLeft == 0) {
@@ -151,7 +165,7 @@ public class WebServer {
                 } else {
                     return generateResponse(CODE_OTHER_ERROR, String.format("关服任务已配置，还剩%s分钟，服务器将关闭", minutesLeft), null);
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
@@ -169,7 +183,7 @@ public class WebServer {
                     }
                 }
                 return generateResponse(CODE_SUCCESS, "success", null);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
@@ -184,7 +198,7 @@ public class WebServer {
                 type = URLDecoder.decode(type, "UTF-8");
                 String outStr = "";
                 reloadFlag = true;
-                switch(type){
+                switch (type) {
                     case "Task": // 任务
                         MapleQuest.clearQuests();
                         outStr = "[重载系统] 任务重载成功。";
@@ -216,7 +230,7 @@ public class WebServer {
                         break;
                     case "CashShop":
                         CashItemFactory.getInstance().clearCashShop();
-                        outStr= "[重载系统] 商城重载成功。";
+                        outStr = "[重载系统] 商城重载成功。";
                         break;
                     case "Reaction":
                         ReactorScriptManager.getInstance().clearDrops();
@@ -228,12 +242,12 @@ public class WebServer {
                         break;
                 }
                 reloadFlag = false;
-                if (outStr.equals("")){
+                if (outStr.equals("")) {
                     return generateResponse(CODE_OTHER_ERROR, "未知的type", null);
                 }
                 System.out.println(outStr);
                 return generateResponse(CODE_SUCCESS, outStr, null);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
@@ -241,7 +255,7 @@ public class WebServer {
         // 保存系列
         get("/protected/save/:name", (request, response) -> {
             try {
-                if(saveFlag){
+                if (saveFlag) {
                     return generateResponse(CODE_OTHER_ERROR, "正在重保存他内容，请稍后再试", null);
                 }
                 saveFlag = true;
@@ -266,14 +280,14 @@ public class WebServer {
                 saveFlag = false;
                 System.out.println(outStr);
                 return generateResponse(CODE_SUCCESS, outStr, null);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
         });
         // 发放全服奖励
         get("/protected/sendAllServerReward", (request, response) -> {
-            try{
+            try {
                 int number = Integer.parseInt(request.queryParams("number"));
                 int type = Integer.parseInt(request.queryParams("type"));
                 if (number <= 0 || type <= 0) {
@@ -288,16 +302,14 @@ public class WebServer {
                             String cash = null;
                             if (type == 1) {
                                 cash = "点卷";
-                            }
-                            else if (type == 2) {
+                            } else if (type == 2) {
                                 cash = "抵用卷";
                             }
                             mch.startMapEffect("管理员发放" + number + cash + "给在线的所有玩家！快感谢管理员吧！", 5121009);
                             ++ret;
                         }
                     }
-                }
-                else if (type == 3) {
+                } else if (type == 3) {
                     for (final ChannelServer cserv1 : ChannelServer.getAllInstances()) {
                         for (final MapleCharacter mch : cserv1.getPlayerStorage().getAllCharacters()) {
                             mch.gainMeso(number, true);
@@ -305,8 +317,7 @@ public class WebServer {
                             ++ret;
                         }
                     }
-                }
-                else if (type == 4) {
+                } else if (type == 4) {
                     for (final ChannelServer cserv1 : ChannelServer.getAllInstances()) {
                         for (final MapleCharacter mch : cserv1.getPlayerStorage().getAllCharacters()) {
                             mch.gainExp(number, true, false, true);
@@ -318,14 +329,11 @@ public class WebServer {
                 String typeA = "";
                 if (type == 1) {
                     typeA = "点卷";
-                }
-                else if (type == 2) {
+                } else if (type == 2) {
                     typeA = "抵用卷";
-                }
-                else if (type == 3) {
+                } else if (type == 3) {
                     typeA = "金币";
-                }
-                else if (type == 4) {
+                } else if (type == 4) {
                     typeA = "经验";
                 }
                 outStr = "一个发放[" + number + "]." + typeA + "!一共发放给了" + ret + "人！";
@@ -339,18 +347,20 @@ public class WebServer {
         // 获取在线玩家列表
         // 发放全服奖励
         get("/protected/getOnlinePlayerList", (request, response) -> {
-            try{
+            try {
                 ArrayList<PlayerInfo> list = new ArrayList<>();
                 for (final ChannelServer chl : ChannelServer.getAllInstances()) {
                     Collection<MapleCharacter> tempList = chl.getPlayerStorage().getAllCharacters();
                     Iterator<MapleCharacter> it = tempList.iterator();
                     while (it.hasNext()) {
-                        MapleCharacter mapleCharacter =  it.next();
+                        MapleCharacter mapleCharacter = it.next();
                         PlayerInfo playerInfo = new PlayerInfo();
                         playerInfo.name = mapleCharacter.getName();
-                        playerInfo.accountId= mapleCharacter.getAccountID();
-                        playerInfo.level=  mapleCharacter.getLevel();
-                        playerInfo.gmLevel= mapleCharacter.getGMLevel();
+                        playerInfo.accountId = mapleCharacter.getAccountID();
+                        playerInfo.level = mapleCharacter.getLevel();
+                        playerInfo.gmLevel = mapleCharacter.getGMLevel();
+                        playerInfo.vipLevel = mapleCharacter.getVip();
+                        playerInfo.vipexpired = mapleCharacter.getVipexpired();
                         list.add(playerInfo);
                     }
                 }
@@ -360,19 +370,106 @@ public class WebServer {
                 return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
             }
         });
-    }
-    
-    private void sendResponse(int code, String msg, Object data ) {
-        halt(200,  generateResponse(code,msg,data));
+
+        // 发放全服奖励
+        get("/protected/gm", (request, response) -> {
+            try {
+                String type = request.queryParams("type");
+                int accountId = Integer.parseInt(request.queryParams("accountId"));
+                String command = request.queryParams("command");
+                boolean isOnline = false;
+                MapleCharacter player = null;
+                for (final ChannelServer chl : ChannelServer.getAllInstances()) {
+                    Collection<MapleCharacter> tempList = chl.getPlayerStorage().getAllCharacters();
+                    Iterator<MapleCharacter> it = tempList.iterator();
+                    while (it.hasNext() && !isOnline) {
+                        MapleCharacter mapleCharacter = it.next();
+                        isOnline = mapleCharacter.getAccountID() == accountId;
+
+                        if (isOnline) {
+                            player = mapleCharacter;
+                            break;
+                        }
+                    }
+                    if (isOnline) {
+                        break;
+                    }
+                }
+                if (!isOnline) {
+                    return generateResponse(CODE_OTHER_ERROR, "玩家当前不在线无法调整", null);
+                }
+                switch (type) {
+                    case "setGmlevel":
+                        player.setGmLevel(Byte.parseByte(command));
+                        break;
+                    case "giftProps":
+                        String[] itemInfoAar = command.split(",");
+                        if (itemInfoAar.length == 2) {
+                            int itemId = Integer.parseInt(itemInfoAar[0]);
+                            int itemNumber = Integer.parseInt(itemInfoAar[1]);
+                            final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
+                            final MapleInventoryType mapleInventoryType = GameConstants.getInventoryType(itemId);
+                            if (itemNumber > 0) {
+                                final Equip item = (Equip) ii.getEquipById(itemId);
+                                if (!MapleInventoryManipulator.checkSpace(player.getClient(), itemId, itemNumber, "")) {
+                                    return generateResponse(CODE_OTHER_ERROR, "包裹空间不足", null);
+                                }
+                                if (ii.isCash(itemId)) {
+                                    item.setUniqueId(1);
+                                }
+                                MapleInventoryManipulator.addById(player.getClient(), itemId, (short) itemNumber, "", null,
+                                        System.currentTimeMillis()
+                                        , (byte) 0);
+
+                            } else {
+                                MapleInventoryManipulator.removeById(player.getClient(), GameConstants.getInventoryType(itemId), itemId, -itemNumber, true, false);
+                            }
+                        }
+                        break;
+                    case "changePwd":
+                        final Connection con = DatabaseConnection.getConnection();
+                        final PreparedStatement ps = con.prepareStatement("Update accounts set password = ? Where name = ?");
+                        ps.setString(1, LoginCrypto.hexSha1(command));
+                        ps.setString(2, String.valueOf(accountId));
+                        ps.execute();
+                        ps.close();
+                        break;
+                    case "setViplevel":
+                        String[] vipInfoAar = command.split(",");
+                        if (vipInfoAar.length == 2) {
+                            int vipLevel = Integer.parseInt(vipInfoAar[0]);
+                            long vipexpired = Long.parseLong(vipInfoAar[1]);
+                            player.setvip(vipLevel);
+                            player.setVipexpired(vipexpired);
+                        }
+                        break;
+                    case "unlock":
+                        final com.mysql.jdbc.Connection dcon = (com.mysql.jdbc.Connection) DatabaseConnection.getConnection();
+                        try (final com.mysql.jdbc.PreparedStatement ps2 = (com.mysql.jdbc.PreparedStatement) dcon.prepareStatement("UPDATE accounts SET loggedin = 0 WHERE id = " + accountId)) {
+                            ps2.executeUpdate();
+                        }
+                        break;
+                }
+                player.saveToDB(false, false);
+                return generateResponse(CODE_SUCCESS, "success", null);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return generateResponse(CODE_OTHER_ERROR, "服务器错误", e.getMessage());
+            }
+        });
     }
 
-    private String generateResponse(int code, String msg, Object data ) {
+    private void sendResponse(int code, String msg, Object data) {
+        halt(200, generateResponse(code, msg, data));
+    }
+
+    private String generateResponse(int code, String msg, Object data) {
         Gson gson = new Gson();
-        return String.format("{\"code\": %s, \"msg\": \"%s\", \"data\": %s }", code, msg,gson.toJson(data));
+        return String.format("{\"code\": %s, \"msg\": \"%s\", \"data\": %s }", code, msg, gson.toJson(data));
     }
 
 
-    public void dismiss(){
+    public void dismiss() {
         stop();
     }
 }

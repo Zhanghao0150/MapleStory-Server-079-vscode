@@ -49,7 +49,7 @@
                 <el-button type="primary" @click="closeServer">关闭服务器</el-button>
                 <el-button type="primary" @click="sendAllServerNotice">发送全服公告</el-button>
                 <el-button type="primary" @click="disconnectAllServerPlayer">断开全服玩家连接</el-button>
-                <el-button type="primary" @click="getOnlinePlayerList">测试获取在线玩家数据</el-button>
+                <el-button type="primary" @click="getOnlinePlayerList()">测试获取在线玩家数据</el-button>
             </div>
             <el-tabs v-model="activeName" style="height: 500px;">
                 <el-tab-pane label="玩家管理" name="playerManger">
@@ -62,6 +62,55 @@
                         </el-select>
                         <el-button type="primary" @click="sendAllServerReward">发放全服奖励</el-button>
                     </div>
+                    <h4>在线玩家列表</h4>
+                    <el-table :data="tableData" style="width: 100%" height="350">
+                        <el-table-column fixed prop="name" label="玩家名称" width="150">
+                        </el-table-column>
+                        <el-table-column prop="level" label="玩家等级" width="120">
+                        </el-table-column>
+                        <el-table-column prop="gmLevel" label="gm等级" width="120">
+                        </el-table-column>
+                        <el-table-column prop="vipLevel" label="vip等级" width="120">
+                        </el-table-column>
+                        <el-table-column prop="vipexpired" label="vip到期时间" width="120" :formatter="formatDate">
+                        </el-table-column>
+                        <el-table-column prop="accountId" label="账号id" width="120">
+                        </el-table-column>
+                        <el-table-column fixed="right" label="操作">
+                            <template slot-scope="scope">
+                                <el-button
+                                    @click.native.prevent="setGmlevel(scope.row)"
+                                    type="text"
+                                    size="small">
+                                    设置管理员等级
+                                </el-button>
+                                <el-button
+                                    @click.native.prevent="setViplevel(scope.row)"
+                                    type="text"
+                                    size="small">
+                                    设置会员等级
+                                </el-button>
+                                <el-button
+                                    @click.native.prevent="giftProps(scope.row)"
+                                    type="text"
+                                    size="small">
+                                    发放物品
+                                </el-button>
+                                <el-button
+                                    @click.native.prevent="changePwd(scope.row)"
+                                    type="text"
+                                    size="small">
+                                    修改密码
+                                </el-button>
+                                <el-button
+                                    @click.native.prevent="unlock(scope.row)"
+                                    type="text"
+                                    size="small">
+                                    解卡
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </el-tab-pane>
                 <el-tab-pane label="重载系列" name="configManger" class="flex wrap">
                     <el-button type="primary" @click="reload('Dungeon')">重载副本</el-button>
@@ -111,7 +160,8 @@
                         value: 4,
                         label: '经验'
                     }],
-                    rewardType: 1
+                    rewardType: 1,
+                    tableData: []
                 }
             },
             methods: {
@@ -176,9 +226,7 @@
                                 content: value
                             }
                         });
-                    }).catch((msg) => {
-
-                    });
+                    })
                 },
                 /** 断开全服玩家连接 */
                 async disconnectAllServerPlayer() {
@@ -236,8 +284,133 @@
                         method: 'get',
                         url: '/protected/getOnlinePlayerList'
                     });
-                    console.log("data", data)
-                }
+                    this.tableData = data.data
+                },
+                async setGmlevel(item) {
+                    this.$prompt('请输入gm等级', '提示', {
+                        confirmButtonText: '发送',
+                        cancelButtonText: '取消',
+                    }).then(async({
+                        value
+                    }) => {
+                        const data = await request({
+                            method: 'get',
+                            url: '/protected/gm',
+                            params: {
+                                type: 'setGmlevel',
+                                accountId: item.accountId,
+                                command: value
+                            }
+                        });
+                        this.$message({
+                            message: data.msg,
+                            type: 'success'
+                        });
+                    })
+                },
+                getTimestampAfterDays(days) {
+                    const futureDate = new Date();
+                    futureDate.setDate(futureDate.getDate() + days);
+                    const timestamp = futureDate.getTime();
+                    return timestamp;
+                },
+                async setViplevel(item) {
+                    this.$prompt(`请输入vip等级和到期时间,例如1级vip 1天: 1,1; 1级vip 7天:1,7`, '提示', {
+                        confirmButtonText: '发送',
+                        cancelButtonText: '取消',
+                    }).then(async({
+                        value
+                    }) => {
+                        const arr = value.split(",");
+                        if (arr.length != 2) {
+                            this.$message.error("参数输入不正确")
+                            return;
+                        }
+                        day = parseInt(arr[1]);
+                        arr[1] = this.getTimestampAfterDays(day);
+                        const data = await request({
+                            method: 'get',
+                            url: '/protected/gm',
+                            params: {
+                                type: 'setViplevel',
+                                accountId: item.accountId,
+                                command: arr.join(',')
+                            }
+                        });
+                        this.$message({
+                            message: data.msg,
+                            type: 'success'
+                        });
+                    })
+                },
+                async giftProps(item) {
+                    this.$prompt('请输入道具id和数量，如果数量为负数那么将会删除对应道具；注意装备的数量只能填1，例如棍棒的 输入 1322005,1 ；蓝蜗牛壳 4000000,100;物品id信息可登录管理员角色通过点击物品查看输出；', '提示', {
+                        confirmButtonText: '发送',
+                        cancelButtonText: '取消',
+                    }).then(async({
+                        value
+                    }) => {
+                        const data = await request({
+                            method: 'get',
+                            url: '/protected/gm',
+                            params: {
+                                type: 'giftProps',
+                                accountId: item.accountId,
+                                command: value
+                            }
+                        });
+                        this.$message({
+                            message: data.msg,
+                            type: 'success'
+                        });
+                    })
+                },
+                async changePwd(item) {
+                    this.$prompt('请输入新密码', '提示', {
+                        confirmButtonText: '发送',
+                        cancelButtonText: '取消',
+                    }).then(async({
+                        value
+                    }) => {
+                        const data = await request({
+                            method: 'get',
+                            url: '/protected/gm',
+                            params: {
+                                type: 'changePwd',
+                                accountId: item.accountId,
+                                command: value
+                            }
+                        });
+                        this.$message({
+                            message: data.msg,
+                            type: 'success'
+                        });
+                    })
+                },
+                async unlock(item) {
+                    const data = await request({
+                        method: 'get',
+                        url: '/protected/gm',
+                        params: {
+                            type: 'unlock',
+                            accountId: item.accountId
+                        }
+                    });
+                    this.$message({
+                        message: data.msg,
+                        type: 'success'
+                    });
+                },
+                //方法区
+                formatDate(row, column) {
+                    // 获取单元格数据
+                    let data = row[column.property]
+                    if (data == null) {
+                        return null
+                    }
+                    let dt = new Date(data)
+                    return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
+                },
             },
             created() {
                 this.check().then(() => {
@@ -249,6 +422,7 @@
                     this.isShowLoginCard = true;
                 })
                 document.getElementById("app").setAttribute("style", "")
+                this.getOnlinePlayerList();
             }
         })
     </script>

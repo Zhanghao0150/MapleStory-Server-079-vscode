@@ -1338,7 +1338,7 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
         try {
             con.setTransactionIsolation(1);
             con.setAutoCommit(false);
-            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, monsterbookcover = ?, dojo_pts = ?, dojoRecord = ?, pets = ?, subcategory = ?, marriageId = ?, currentrep = ?, totalrep = ?, charmessage = ?, expression = ?, constellation = ?, blood = ?, month = ?, day = ?, beans = ?, prefix = ?, skillzq = ?, bosslog = ?, PGMaxDamage = ?, jzname = ?, mrfbrw = ?, mrsjrw = ?, mrsgrw = ?, mrsbossrw = ?, hythd = ?, mrsgrwa = ?, mrfbrwa = ?, mrsbossrwa = ?, mrsgrws = ?,  mrsbossrws = ?, mrfbrws = ?, mrsgrwas = ?,  mrsbossrwas = ?, mrfbrwas = ?, ddj = ?, vip = ?, djjl = ?, qiandao = ?, jf = ?, pvpDeaths = ?, pvpKills = ?, pvpVictory = ?, shaguai = ?, name = ? WHERE id = ?", DatabaseConnection.RETURN_GENERATED_KEYS);
+            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, monsterbookcover = ?, dojo_pts = ?, dojoRecord = ?, pets = ?, subcategory = ?, marriageId = ?, currentrep = ?, totalrep = ?, charmessage = ?, expression = ?, constellation = ?, blood = ?, month = ?, day = ?, beans = ?, prefix = ?, skillzq = ?, bosslog = ?, PGMaxDamage = ?, jzname = ?, mrfbrw = ?, mrsjrw = ?, mrsgrw = ?, mrsbossrw = ?, hythd = ?, mrsgrwa = ?, mrfbrwa = ?, mrsbossrwa = ?, mrsgrws = ?,  mrsbossrws = ?, mrfbrws = ?, mrsgrwas = ?,  mrsbossrwas = ?, mrfbrwas = ?, ddj = ?, vip = ?, djjl = ?, qiandao = ?, jf = ?, pvpDeaths = ?, pvpKills = ?, pvpVictory = ?, shaguai = ?, name = ?, vipexpired = ? WHERE id = ?", DatabaseConnection.RETURN_GENERATED_KEYS);
             ps.setInt(1, this.level);
             ps.setShort(2, this.fame);
             ps.setShort(3, this.stats.getStr());
@@ -1445,7 +1445,8 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
             ps.setInt(67, this.pvpVictory);
             ps.setInt(68, this.shaguai);
             ps.setString(69, this.name);
-            ps.setInt(70, this.id);
+            ps.setLong(70, this.vipexpired);
+            ps.setInt(71, this.id);
             if (ps.executeUpdate() < 1) {
                 ps.close();
                 throw new DatabaseException("Character not in database (" + this.id + ")");
@@ -2846,7 +2847,11 @@ public class MapleCharacter extends AbstractAnimatedMapleMapObject implements Se
     public void setName(final String name) {
         this.name = name;
     }
-    
+
+    public void setGmLevel(byte gmLevel) {
+        this.gmLevel = gmLevel;
+    }
+
     public void setExp(final int exp) {
         this.exp = exp;
     }
